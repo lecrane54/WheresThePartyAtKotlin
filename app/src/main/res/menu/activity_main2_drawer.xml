@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:id="@+id/grp1" android:checkableBehavior="single">
+
+
+        <item
+            android:id="@+id/mapicon"
+            android:checked="false"
+            android:icon="@drawable/location"
+            android:title="Party Map"
+            />
+
+        <item
+            android:id="@+id/partiesicon"
+            android:checked="false"
+            android:icon="@drawable/bar"
+            android:title="Your Parties" />
+        <item
+            android:checked="false"
+            android:title="Settings"
+            android:id="@+id/settingsicon"
+            android:icon="@drawable/ic_build_black_24dp"
+            />
+
+        <item
+            android:id="@+id/licensesicon"
+            android:checkable="false"
+            android:checked="false"
+            android:icon="@drawable/ic_description_black_24dp"
+            android:title="Licenses"
+            />
+        <item
+            android:id="@+id/log_out"
+            android:checked="false"
+            android:icon="@drawable/person"
+            android:title="Log out"
+            />
+
+
+
+
+    </group>
+
+</menu>

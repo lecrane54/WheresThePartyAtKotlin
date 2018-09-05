@@ -1,0 +1,9 @@
+
+<com.redbooth.WelcomeCoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/coordinator123"
+    android:theme="@style/AppTheme.NoActionBar"
+    android:background="@color/colorPrimary"
+
+    />

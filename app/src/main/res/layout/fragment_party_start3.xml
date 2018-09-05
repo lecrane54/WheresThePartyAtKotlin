@@ -1,0 +1,81 @@
+<com.redbooth.WelcomePageLayout
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:background="@color/colorPrimary"
+    android:theme="@style/AppTheme.NoActionBar"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Party Notes"
+        android:textSize="25sp"
+        android:id="@+id/textnote"
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_margin="10dp"
+        android:layout_centerHorizontal="true"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/Black"
+        android:layout_below="@+id/textnote"
+        android:id="@+id/line"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:background="@color/colorPrimary"
+        android:layout_below="@+id/line"
+        app:theme="@style/Animation.AppCompat.DropDownUp"
+        android:maxLines="5"
+        android:inputType="textMultiLine"
+        android:textColor="@color/colorPrimaryDark"
+        android:maxLength="150"
+        android:layout_marginTop="5dp"
+        android:hint="Enter the fine details of your party!"
+        android:textSize="20sp"
+        android:textColorHint="@color/DarkSlateGray"
+        android:layout_margin="5dp"
+        android:gravity="top|left"
+        android:id="@+id/edit_note"
+        android:drawableBottom="@color/Black"
+        android:elegantTextHeight="true"
+
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:text="0/150"
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_margin="5dp"
+        android:id="@+id/characterCount"
+        />
+
+
+
+
+
+    <com.spark.submitbutton.SubmitButton
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="15dp"
+        android:id="@+id/complete"
+        android:clickable="true"
+        android:text="Submit"
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_centerHorizontal="true"
+        app:sub_btn_background="@color/colorPrimary"
+        app:sub_btn_ripple_color="@color/colorPrimaryDark"
+        app:sub_btn_duration="750"
+        app:sub_btn_line_color="@color/colorPrimaryDark"
+        app:sub_btn_tick_color="@color/WhiteSmoke"
+        />
+
+</com.redbooth.WelcomePageLayout>

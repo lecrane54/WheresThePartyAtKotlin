@@ -1,0 +1,169 @@
+<com.redbooth.WelcomePageLayout
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:background="@color/colorPrimary"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:theme="@style/AppTheme.NoActionBar"
+    android:scrollbars="vertical"
+    android:scrollbarStyle="outsideOverlay"
+    >
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="20sp"
+        android:text="Party Type"
+        android:id="@+id/type"
+        android:layout_below="@+id/spin"
+
+        android:textStyle="bold"/>
+
+    <com.jaredrummler.materialspinner.MaterialSpinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/spin2"
+        android:layout_marginTop="5dp"
+        android:layout_below="@+id/type"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+
+        />
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/age_text"
+        android:layout_alignParentRight="true"
+        android:id="@+id/group"
+        android:layout_marginRight="80dp"
+        >
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="18"
+            android:textSize="20sp"
+            android:buttonTint="@color/colorPrimaryDark"
+            android:checked="false"
+            android:textColor="@color/colorPrimaryDark"
+            android:textStyle="bold"
+            android:id="@+id/but1"
+            />
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="21"
+            android:buttonTint="@color/colorPrimaryDark"
+            android:textColor="@color/colorPrimaryDark"
+            android:checked="false"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:id="@+id/but2"
+            />
+
+
+
+
+    </RadioGroup>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Admission Fee"
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_below="@+id/spin2"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_margin="5dp"
+        android:id="@+id/text_fee"
+        />
+
+    <com.jaredrummler.materialspinner.MaterialSpinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text_fee"
+        android:layout_marginLeft="35dp"
+        android:id="@+id/spin3"
+        android:layout_marginBottom="45dp"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/SlateGray"
+        android:layout_below="@+id/set_time"
+        android:id="@+id/space"
+        />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="20sp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/space"
+        android:text="Add a Photo"
+        android:layout_marginTop="10dp"
+        android:id="@+id/photo_text"
+        />
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scaleType="centerCrop"
+        android:layout_above="@+id/picButton"
+        android:layout_below="@id/photo_text"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:clickable="true"
+        android:adjustViewBounds="true"
+        android:id="@+id/img"/>
+
+    <Button
+        android:id="@+id/picButton"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add picture"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/button_shape"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/set_time"
+        android:text="Set Party time"
+        android:background="@drawable/button_shape"
+        android:layout_below="@+id/spin3"
+        android:layout_alignStart="@+id/picButton"
+        android:layout_marginBottom="5dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/age_text"
+
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="20sp"
+        android:text="Age Minimum"
+        android:textStyle="bold"
+        android:layout_marginRight="20dp"
+        android:layout_alignBaseline="@+id/text_fee"
+        android:layout_alignBottom="@+id/text_fee"
+        android:layout_alignEnd="@+id/spin2"
+        android:layout_marginEnd="25dp" />
+
+
+</com.redbooth.WelcomePageLayout>

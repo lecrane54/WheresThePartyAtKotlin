@@ -1,0 +1,196 @@
+
+<com.redbooth.WelcomePageLayout android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:ch="http://schemas.android.com/tools"
+    android:background="@color/colorPrimary"
+    android:theme="@style/AppTheme.NoActionBar"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Start a Party"
+        android:textSize="35sp"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/start"
+        android:textColor="@color/colorPrimaryDark"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/colorPrimaryDark"
+        android:layout_below="@+id/start"
+        android:id="@+id/line3"
+        />
+
+
+    <com.github.florent37.materialtextfield.MaterialTextField
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        app:mtf_labelColor="@color/colorPrimaryDark"
+        app:mtf_animationDuration="500"
+        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/party_theme_mat"
+        android:layout_below="@+id/party_title_mat"
+        >
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Party Theme"
+            android:textColor="@color/Black"
+            android:textColorHint="@color/Black"
+            android:textColorHighlight="@color/Black"
+            android:textSize="15sp"
+            android:maxHeight="2dp"
+            android:maxLength="15"
+            android:maxLines="1"
+            android:inputType="textCapWords"
+            android:imeOptions="actionNext"
+            android:maxEms="1"
+            android:id="@+id/party_theme_edit"
+
+            />
+
+    </com.github.florent37.materialtextfield.MaterialTextField>
+
+
+    <com.github.florent37.materialtextfield.MaterialTextField
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        app:mtf_labelColor="@color/colorPrimaryDark"
+
+        app:mtf_animationDuration="500"
+        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/address_mat"
+        android:layout_below="@+id/party_theme_mat"
+        >
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Party Address"
+            android:textColor="@color/Black"
+            android:textColorHint="@color/Black"
+            android:textColorHighlight="@color/Black"
+            android:textSize="15sp"
+            android:maxHeight="2dp"
+            android:maxLength="25"
+            android:maxLines="1"
+            android:inputType="textPostalAddress"
+            android:imeOptions="actionNext"
+            android:maxEms="1"
+            android:id="@+id/address"
+
+            />
+
+
+
+    </com.github.florent37.materialtextfield.MaterialTextField>
+
+
+    <com.github.florent37.materialtextfield.MaterialTextField
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        app:mtf_labelColor="@color/colorPrimaryDark"
+
+        app:mtf_animationDuration="500"
+        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/city_mat"
+        android:layout_below="@+id/address_mat"
+        >
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="City"
+            android:textColor="@color/Black"
+            android:textColorHint="@color/Black"
+            android:textColorHighlight="@color/Black"
+            android:textSize="15sp"
+            android:maxHeight="2dp"
+            android:maxLength="25"
+            android:maxLines="1"
+            android:inputType="textPostalAddress"
+            android:imeOptions="actionDone"
+            android:maxEms="1"
+            android:id="@+id/city"/>
+
+
+
+    </com.github.florent37.materialtextfield.MaterialTextField>
+
+    <com.github.florent37.materialtextfield.MaterialTextField
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        app:mtf_labelColor="@color/colorPrimaryDark"
+
+
+        app:mtf_animationDuration="500"
+        android:id="@+id/party_title_mat"
+        android:layout_below="@+id/line3"
+        android:layout_alignStart="@+id/party_theme_mat">
+
+
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Party Title"
+            android:inputType="textCapWords"
+            android:textColor="@color/Black"
+            android:textColorHint="@color/Black"
+            android:textColorHighlight="@color/Black"
+            android:textSize="15sp"
+            android:maxHeight="2dp"
+            android:maxLength="25"
+            android:maxLines="1"
+            android:maxEms="1"
+            android:id="@+id/party_title"
+            android:imeOptions="actionNext"/>
+
+    </com.github.florent37.materialtextfield.MaterialTextField>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/city_mat"
+        android:text="Use location?"
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_alignStart="@+id/party_theme_mat"
+        android:textSize="20sp"
+        android:layout_marginTop="10dp"
+        android:id="@+id/texty"
+        />
+
+
+
+    <com.rm.rmswitch.RMSwitch
+        android:id="@+id/che"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/texty"
+        android:layout_alignStart="@+id/texty"
+        android:layout_marginTop="5dp"
+        app:checked="false"
+        app:forceAspectRatio="false"
+        app:enabled="true"
+        app:switchDesign="slim"
+        app:switchBkgCheckedColor="@color/DarkSlateGray"
+        app:switchBkgNotCheckedColor="@color/DarkSlateGray"
+        app:switchToggleCheckedColor="@color/colorPrimaryDark"
+        app:switchToggleCheckedImage="@drawable/ms__arrow"
+        app:switchToggleNotCheckedColor="@color/WhiteSmoke"
+        />
+
+
+
+
+
+</com.redbooth.WelcomePageLayout>
