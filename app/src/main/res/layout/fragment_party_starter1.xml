@@ -16,7 +16,7 @@
         android:textSize="35sp"
         android:layout_centerHorizontal="true"
         android:id="@+id/start"
-        android:textColor="@color/colorPrimaryDark"
+        android:textColor="@color/white"
         />
 
     <TextView
@@ -31,7 +31,7 @@
     <com.github.florent37.materialtextfield.MaterialTextField
         android:layout_width="350dp"
         android:layout_height="wrap_content"
-        app:mtf_labelColor="@color/colorPrimaryDark"
+        app:mtf_labelColor="@color/white"
         app:mtf_animationDuration="500"
         android:layout_marginTop="10dp"
         android:layout_centerHorizontal="true"
@@ -63,7 +63,7 @@
     <com.github.florent37.materialtextfield.MaterialTextField
         android:layout_width="350dp"
         android:layout_height="wrap_content"
-        app:mtf_labelColor="@color/colorPrimaryDark"
+        app:mtf_labelColor="@color/white"
 
         app:mtf_animationDuration="500"
         android:layout_marginTop="10dp"
@@ -98,7 +98,7 @@
     <com.github.florent37.materialtextfield.MaterialTextField
         android:layout_width="350dp"
         android:layout_height="wrap_content"
-        app:mtf_labelColor="@color/colorPrimaryDark"
+        app:mtf_labelColor="@color/white"
 
         app:mtf_animationDuration="500"
         android:layout_marginTop="10dp"
@@ -112,7 +112,7 @@
             android:layout_height="wrap_content"
             android:hint="City"
             android:textColor="@color/Black"
-            android:textColorHint="@color/Black"
+            android:textColorHint="@color/black"
             android:textColorHighlight="@color/Black"
             android:textSize="15sp"
             android:maxHeight="2dp"
@@ -130,7 +130,7 @@
     <com.github.florent37.materialtextfield.MaterialTextField
         android:layout_width="350dp"
         android:layout_height="wrap_content"
-        app:mtf_labelColor="@color/colorPrimaryDark"
+        app:mtf_labelColor="@color/white"
 
 
         app:mtf_animationDuration="500"
@@ -162,7 +162,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/city_mat"
         android:text="Use location?"
-        android:textColor="@color/colorPrimaryDark"
+        android:textColor="@color/white"
         android:layout_alignStart="@+id/party_theme_mat"
         android:textSize="20sp"
         android:layout_marginTop="10dp"

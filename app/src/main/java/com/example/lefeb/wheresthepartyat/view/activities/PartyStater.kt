@@ -28,9 +28,13 @@ import java.util.*
 import com.google.firebase.firestore.CollectionReference
 import com.koalap.geofirestore.GeoFire
 import com.koalap.geofirestore.GeoLocation
+import com.mapbox.android.core.location.LocationEngine
+import com.mapbox.android.core.location.LocationEngineListener
+import com.mapbox.android.core.location.LocationEnginePriority
+import com.mapbox.android.core.location.LocationEngineProvider
 
 
-class PartyStater : AppCompatActivity(), View.OnClickListener {
+class PartyStater : AppCompatActivity(), View.OnClickListener, LocationEngineListener {
 
 
     private lateinit var  coordinatorLayout: WelcomeCoordinatorLayout
@@ -42,6 +46,9 @@ class PartyStater : AppCompatActivity(), View.OnClickListener {
     private var partyTheme: String? = null
     private var partyAddress: String? = null
     private var partyCity: String? = null
+    private var originLocation: Location? = null
+    var locationEngine: LocationEngine? = null
+
     private var age: Int? = null
     private lateinit var geo : GeoPoint
     private var notes: String? = null
@@ -58,6 +65,7 @@ class PartyStater : AppCompatActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_party_stater)
+        initLocationEngine()
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
         coordinatorLayout = findViewById(R.id.coordinator123)
@@ -75,11 +83,13 @@ class PartyStater : AppCompatActivity(), View.OnClickListener {
         spin3.setOnItemSelectedListener(MaterialSpinner.OnItemSelectedListener { _, _, _, item: String ->
             fee = item
         })
+        Log.d("dddd","$originLocation")
 
         complete.setOnClickListener {
             Log.d("dddd","saving party")
             saveParty()
         }
+
 
         group.setOnCheckedChangeListener(RadioGroup.OnCheckedChangeListener { _, checkedId:Int ->
             if(checkedId == R.id.but1){
@@ -109,6 +119,20 @@ class PartyStater : AppCompatActivity(), View.OnClickListener {
             }
         }
 
+        address.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(p0: Editable?) {
+                partyAddress = p0.toString().trim()
+            }
+
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+            }
+        })
+
+
         edit_note.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(p0: Editable?) {
             }
@@ -125,15 +149,23 @@ class PartyStater : AppCompatActivity(), View.OnClickListener {
 
     private fun saveParty(){
         val addressCity = address.text.trim().toString() + " " + city.text.trim().toString()
-        geo = getLocationFromAddress(addressCity)
+
+        if(isCheck){
+            geo = GeoPoint(originLocation!!.latitude,originLocation!!.longitude)
+            partyAddress = getCompleteAddressString(originLocation!!.latitude,originLocation!!.longitude)
+        }else{
+            geo = getLocationFromAddress(addressCity)
+
+        }
+
         val uid = FirebaseAuth.getInstance().uid
 
 
-        val party = Party(hostName!!,party_title.text.trim().toString(),partyType,address.text.trim().toString(),edit_note.text.trim().toString(),age!!,fee,geo,uid!!,geo.latitude,geo.longitude)
+        val party = Party(hostName!!,party_title.text.trim().toString(),partyType,partyAddress!!,edit_note.text.trim().toString(),age!!,fee,geo,uid!!,geo.latitude,geo.longitude)
 
         val map = party.toMap()
 
-        firestore!!.collection("parties")
+        firestore.collection("parties")
                 .add(map as MutableMap<String, Any>)
                 .addOnSuccessListener { documentReference ->
                     Log.d("dddd", "DocumentSnapshot written with ID: " + documentReference.id)
@@ -255,5 +287,29 @@ class PartyStater : AppCompatActivity(), View.OnClickListener {
             }
         }
 
+    }
+    @SuppressWarnings("MissingPermission")
+    private fun initLocationEngine(){
+        locationEngine = LocationEngineProvider(this).obtainBestLocationEngineAvailable()
+        locationEngine?.priority = LocationEnginePriority.HIGH_ACCURACY
+        locationEngine?.activate()
+
+        val lastLocation = locationEngine?.lastLocation
+        if(lastLocation != null){
+            originLocation = lastLocation
+        }else{
+            locationEngine?.addLocationEngineListener(this)
+        }
+
+    }
+
+    override fun onLocationChanged(location: Location?) {
+        location?.let {
+            originLocation = location
+        }
+    }
+
+    override fun onConnected() {
+        locationEngine?.requestLocationUpdates()
     }
 }

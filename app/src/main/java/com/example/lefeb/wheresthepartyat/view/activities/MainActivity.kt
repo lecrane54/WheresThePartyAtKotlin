@@ -16,6 +16,8 @@ import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.example.lefeb.wheresthepartyat.R
 import com.example.lefeb.wheresthepartyat.view.fragments.MapFragment
+import com.example.lefeb.wheresthepartyat.view.fragments.PartyListFragment
+import com.example.lefeb.wheresthepartyat.view.model.Party
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
@@ -26,7 +28,10 @@ import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.activity_main2.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 
-class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
+class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, View.OnClickListener, PartyListFragment.OnFragClick {
+    override fun onClick(item: Party) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 
 
     private var firebaseUser: FirebaseUser? = null
@@ -41,6 +46,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private var emailText:TextView? = null
     private var navView: NavigationView? = null
     private lateinit var fragment: MapFragment
+    private lateinit var partyListFragment: PartyListFragment
     private lateinit var manager: android.support.v4.app.FragmentManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -83,7 +89,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     fun initDB(){
         firebaseUser = FirebaseAuth.getInstance().currentUser
-        uid = firebaseUser!!.uid
+        uid = FirebaseAuth.getInstance()!!.uid
         name = firebaseUser!!.displayName
         email = firebaseUser!!.email
         db = FirebaseFirestore.getInstance()
@@ -146,7 +152,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 // Handle the camera action
             }
             R.id.partiesicon -> {
-
+                partyListFragment = PartyListFragment()
+                val ft: android.support.v4.app.FragmentTransaction = manager.beginTransaction()
+                ft.replace(R.id.container,partyListFragment)
+                ft.commit()
             }
             R.id.settingsicon -> {
 

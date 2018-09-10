@@ -32,7 +32,7 @@ import java.io.ByteArrayOutputStream
 import java.net.URL
 
 
-class LoginActivity : AppCompatActivity(), FirebaseAuth.AuthStateListener {
+class LoginActivity : AppCompatActivity() {
 
     var firebaseUser: FirebaseUser? = null
     private var firestore : FirebaseFirestore? = null
@@ -65,7 +65,8 @@ class LoginActivity : AppCompatActivity(), FirebaseAuth.AuthStateListener {
         uid = mAuth!!.uid
         context = this
 
-        checkUser()
+
+
 
         login_button.setOnClickListener(View.OnClickListener {
 
@@ -105,9 +106,6 @@ class LoginActivity : AppCompatActivity(), FirebaseAuth.AuthStateListener {
                             parameters.putString("fields", "id,name,email,picture.type(large)")
                             request.parameters = parameters
                             request.executeAsync()
-
-                            goToNextActivity()
-
                         }
 
                         override fun onCancel() {
@@ -138,19 +136,14 @@ class LoginActivity : AppCompatActivity(), FirebaseAuth.AuthStateListener {
         mAuth!!.signInWithCredential(credential).addOnSuccessListener{_ ->
             uid = mAuth!!.currentUser!!.uid
             saveUser()
+            goToNextActivity()
         }.addOnFailureListener{exception ->
             Log.d("dddd"," $exception")
         }
 
     }
 
-    override fun onAuthStateChanged(p0: FirebaseAuth) {
-        firebaseUser = p0.currentUser
 
-        if(firebaseUser != null){
-            uid = firebaseUser!!.uid
-        }
-    }
 
     fun saveUser(){
         val map = User(fbId!!,name!!,email!!,uid!!).toMap()
@@ -166,8 +159,8 @@ class LoginActivity : AppCompatActivity(), FirebaseAuth.AuthStateListener {
     }
 
 
-    fun checkUser(){
-        if( mAuth!!.currentUser != null){
+    fun checkUser(user: FirebaseUser){
+        if( user != null){
             goToNextActivity()
         }
 
@@ -189,11 +182,18 @@ class LoginActivity : AppCompatActivity(), FirebaseAuth.AuthStateListener {
 
     override fun onStart() {
         super.onStart()
+        firebaseUser = FirebaseAuth.getInstance().currentUser
+        checkUser(firebaseUser!!)
 
     }
 
     override fun onResume() {
         super.onResume()
+    }
+
+    override fun onStop() {
+        super.onStop()
+
     }
 }
 

@@ -132,7 +132,7 @@ class MapFragment : Fragment(), PermissionsListener,LocationEngineListener {
     }
 
      fun getParties(location: Location?){
-        var query: GeoQuery = geoFire.queryAtLocation(GeoLocation( location!!.latitude,location!!.longitude),2.0)
+        var query: GeoQuery = geoFire.queryAtLocation(GeoLocation( location!!.latitude,location.longitude),2.0)
         val list: MutableList<String> = ArrayList()
         query.addGeoQueryEventListener(object : GeoQueryEventListener {
             override fun onKeyEntered(key: String, location: GeoLocation) {
@@ -194,43 +194,36 @@ class MapFragment : Fragment(), PermissionsListener,LocationEngineListener {
 
     private fun displayMarkers(title: String?, lat: Double?, lng: Double?, type:String?){
         val latLng = LatLng(lat!!,lng!!)
+        var icon: Icon? = null
         when(type) {
             "BYOB" -> {
-                val icon = IconFactory.getInstance(context!!).fromResource(R.drawable.byob)
-               createMarker(latLng,title,icon)
-
+                icon = IconFactory.getInstance(context!!).fromResource(R.drawable.byob)
             }
             "Keg" -> {
-                val icon = IconFactory.getInstance(context!!).fromResource(R.drawable.keg)
-                createMarker(latLng,title,icon)
+                 icon = IconFactory.getInstance(context!!).fromResource(R.drawable.keg)
             }
             "Tailgate" -> {
-                val icon = IconFactory.getInstance(context!!).fromResource(R.drawable.tailgate)
-                createMarker(latLng,title,icon)
+                 icon = IconFactory.getInstance(context!!).fromResource(R.drawable.tailgate)
             }
             "Fraternity" -> {
-                val icon = IconFactory.getInstance(context!!).fromResource(R.drawable.fraternity)
-                createMarker(latLng,title,icon)
+                 icon = IconFactory.getInstance(context!!).fromResource(R.drawable.fraternity)
             }
-
             "Birthday" -> {
-                val icon = IconFactory.getInstance(context!!).fromResource(R.drawable.party)
-                createMarker(latLng,title,icon)
+                 icon = IconFactory.getInstance(context!!).fromResource(R.drawable.party)
             }
-
             "Pregame" -> {
                 //TODO get pregame icon
             }
-
             "Other"->{
-                val icon = IconFactory.getInstance(context!!).fromResource(R.drawable.other)
-                createMarker(latLng,title,icon)
+                 icon = IconFactory.getInstance(context!!).fromResource(R.drawable.other)
             }
-        }
 
+
+        }
+        createMarker(latLng,title,icon)
     }
 
-    private fun createMarker(latlng: LatLng, title: String?,icon: Icon){
+    private fun createMarker(latlng: LatLng, title: String?,icon: Icon?){
         map.addMarker(MarkerOptions()
                 .position(latlng)
                 .title(title)
@@ -290,6 +283,11 @@ class MapFragment : Fragment(), PermissionsListener,LocationEngineListener {
     override fun onLowMemory() {
         super.onLowMemory()
         mapView.onLowMemory()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        mapView.onDestroy()
     }
 
     override fun onStop() {
